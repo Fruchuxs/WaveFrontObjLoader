@@ -13,12 +13,12 @@ import javax.media.opengl.GL2;
  *
  * @author FloH
  */
-public class Model {
+public class ImportedModel {
     private Integer listIndex;
     private List<FaceGroup> facesGroup;
     private boolean listCreated;
     
-    public Model(List<FaceGroup> pFacesGroup, Integer pListIndex) {
+    public ImportedModel(List<FaceGroup> pFacesGroup, Integer pListIndex) {
         facesGroup = pFacesGroup;
         listIndex = pListIndex;
         listCreated = false;

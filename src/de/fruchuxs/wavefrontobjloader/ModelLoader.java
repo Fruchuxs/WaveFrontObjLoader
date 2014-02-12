@@ -8,7 +8,7 @@ package de.fruchuxs.wavefrontobjloader;
 import de.fruchuxs.wavefrontobjloader.data.Face;
 import de.fruchuxs.wavefrontobjloader.data.ModelData;
 import de.fruchuxs.wavefrontobjloader.data.FaceData;
-import de.fruchuxs.wavefrontobjloader.data.Model;
+import de.fruchuxs.wavefrontobjloader.data.ImportedModel;
 import de.fruchuxs.wavefrontobjloader.data.FaceGroup;
 import de.fruchuxs.wavefrontobjloader.data.Material;
 import java.io.BufferedReader;
@@ -68,7 +68,7 @@ public class ModelLoader {
      * @return Ein konkretes Model-Objekt
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde.
      */
-    public static Model modelFactory(final Path pModelToLoad) throws FileNotFoundException {
+    public static ImportedModel modelFactory(final Path pModelToLoad) throws FileNotFoundException {
         if (!pModelToLoad.toFile().exists()) {
             throw new FileNotFoundException(pModelToLoad.toString());
         }
@@ -84,11 +84,11 @@ public class ModelLoader {
      * @return Ein konkretes Model-Objekt
      * @throws FileNotFoundException
      */
-    public static Model modelFactory(final String pModelPath) throws FileNotFoundException {
+    public static ImportedModel modelFactory(final String pModelPath) throws FileNotFoundException {
         return modelFactory(FileSystems.getDefault().getPath(pModelPath));
     }
 
-    private Model createModel(Path pModelPath) {
+    private ImportedModel createModel(Path pModelPath) {
         ModelData data = parseObjectFile(pModelPath);
         List<FaceGroup> faces = new ArrayList<>();
         FaceGroup fg = null;
@@ -113,7 +113,7 @@ public class ModelLoader {
             faces.add(fg);
         }
 
-        return new Model(faces, ++ModelLoader.modelCounter);
+        return new ImportedModel(faces, ++ModelLoader.modelCounter);
     }
 
     private Face createFace(ModelData pData, Integer currentIndex) {
