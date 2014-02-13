@@ -39,6 +39,7 @@ public class Face {
     
     public void draw(GL2 gl) {
         int mode;
+        Float[] normalCoords, texCoords, vertexCoords;
         
         switch(vertexCoordList.size()) {
             case 3: {
@@ -56,9 +57,21 @@ public class Face {
         
         gl.glBegin(mode);
             for(int i = 0; i < vertexCoordList.size(); i++) {
-                gl.glNormal3f(normalCoordList.get(i)[0], normalCoordList.get(i)[1], normalCoordList.get(i)[2]);
-                gl.glTexCoord2d(textureCoordList.get(i)[0], textureCoordList.get(i)[1]);
-                gl.glVertex3f(vertexCoordList.get(i)[0], vertexCoordList.get(i)[1], vertexCoordList.get(i)[2]);
+                normalCoords = normalCoordList.get(i);
+                texCoords = textureCoordList.get(i);
+                vertexCoords = vertexCoordList.get(i);
+                
+                if(normalCoords != null) {
+                    gl.glNormal3f(normalCoords[0], normalCoords[1], normalCoords[2]);
+                }
+                
+                if(texCoords != null) {
+                    gl.glTexCoord2d(texCoords[0], texCoords[1]);
+                }
+                
+                if(vertexCoords != null) {
+                    gl.glVertex3f(vertexCoords[0], vertexCoords[1], vertexCoords[2]);
+                }
             }
         gl.glEnd();
     }
