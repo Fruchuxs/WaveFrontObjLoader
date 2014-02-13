@@ -24,6 +24,7 @@ public class ImportedModel {
         facesGroup = pFacesGroup;
         listIndex = pListIndex;
         listCreated = false;
+        extremPoints = pExtremPoints;
     }
     
     public void draw(GL2 gl) {
