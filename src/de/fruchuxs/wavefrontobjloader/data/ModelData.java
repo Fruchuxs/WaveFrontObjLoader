@@ -20,12 +20,14 @@ public class ModelData {
     private List<Float[]> normalCoordList;
     private List<Float[]> textureCoordList;
     
+    
     /**
      * Liste mit den Nummern der vertex/normal/textureCoord
      * Daten
      */
     private List<FaceData> facesList; 
     private Map<String, Material> mtlList;
+    private Map<String, Float> extremPoints;
     
     public ModelData() {
         vertexCoordList = new ArrayList<>();
@@ -33,6 +35,22 @@ public class ModelData {
         textureCoordList = new ArrayList<>();
         facesList = new ArrayList<>();
         mtlList = new HashMap<>();
+        extremPoints = new HashMap<>();
+        
+        extremPoints.put("top", 0f);
+        extremPoints.put("bottom", 0f);
+        extremPoints.put("right", 0f);
+        extremPoints.put("left", 0f);
+        extremPoints.put("near", 0f);
+        extremPoints.put("far", 0f);
+    }
+
+    public Map<String, Float> getExtremPoints() {
+        return extremPoints;
+    }
+
+    public void setExtremPoints(Map<String, Float> extremPoints) {
+        this.extremPoints = extremPoints;
     }
 
     public boolean addFaceData(FaceData e) {
@@ -52,7 +70,28 @@ public class ModelData {
     }
     
     public boolean addVertexCoords(Float[] e) {
+        interpretPoints(e);
         return vertexCoordList.add(e);
+    }
+    
+    private void interpretPoints(Float[] e) {
+        if(e[0] > extremPoints.get("right")) {
+            extremPoints.put("right", e[0]);
+        } else {
+            extremPoints.put("left", e[0]);
+        }
+        
+        if(e[1] > extremPoints.get("top")) {
+            extremPoints.put("top", e[0]);
+        } else {
+            extremPoints.put("bottom", e[0]);
+        }
+        
+        if(e[2] > extremPoints.get("near")) {
+            extremPoints.put("near", e[0]);
+        } else {
+            extremPoints.put("far", e[0]);
+        }
     }
     
     public Float[] getVertexCoordsAt(Integer pPos) {

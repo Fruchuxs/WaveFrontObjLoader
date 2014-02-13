@@ -87,7 +87,12 @@ public class ModelLoader {
     public static ImportedModel modelFactory(final String pModelPath) throws FileNotFoundException {
         return modelFactory(FileSystems.getDefault().getPath(pModelPath));
     }
-
+    
+    /**
+     * Todo: Group faces whitout a material
+     * @param pModelPath
+     * @return 
+     */
     private ImportedModel createModel(Path pModelPath) {
         ModelData data = parseObjectFile(pModelPath);
         List<FaceGroup> faces = new ArrayList<>();
@@ -113,7 +118,7 @@ public class ModelLoader {
             faces.add(fg);
         }
 
-        return new ImportedModel(faces, ++ModelLoader.modelCounter);
+        return new ImportedModel(faces, data.getExtremPoints(), ++ModelLoader.modelCounter);
     }
 
     private Face createFace(ModelData pData, Integer currentIndex) {
@@ -121,7 +126,6 @@ public class ModelLoader {
         Face faceToAdd = new Face();
 
         for (int j = 0; j < fd.getFaceDataCount(); j++) {
-
             faceToAdd.addNormalCoords(pData.getNormalCoordsAt(fd.getNormalNumberAt(j) - 1));
             faceToAdd.addTextureCoords(pData.getTextureCoordsAt(fd.getTextureCoordNumberAt(j) - 1));
             faceToAdd.addVertexCoords(pData.getVertexCoordsAt(fd.getVertexNumberAt(j) - 1));

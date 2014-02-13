@@ -7,6 +7,7 @@
 package de.fruchuxs.wavefrontobjloader.data;
 
 import java.util.List;
+import java.util.Map;
 import javax.media.opengl.GL2;
 
 /**
@@ -17,8 +18,9 @@ public class ImportedModel {
     private Integer listIndex;
     private List<FaceGroup> facesGroup;
     private boolean listCreated;
+    private Map<String, Float> extremPoints;
     
-    public ImportedModel(List<FaceGroup> pFacesGroup, Integer pListIndex) {
+    public ImportedModel(List<FaceGroup> pFacesGroup, Map<String, Float> pExtremPoints, Integer pListIndex) {
         facesGroup = pFacesGroup;
         listIndex = pListIndex;
         listCreated = false;
@@ -45,5 +47,15 @@ public class ImportedModel {
         for(FaceGroup i : facesGroup) {
                 i.draw(gl);
             }
+    }
+    
+    /**
+     * Get an extrem Point!
+     * left, right, top, bottom, near, far
+     * @param pPoint
+     * @return 
+     */
+    public Float getExtremPoint(String pPoint) {
+        return extremPoints.get(pPoint);
     }
 }

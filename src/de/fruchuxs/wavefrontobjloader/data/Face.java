@@ -7,12 +7,16 @@
 package de.fruchuxs.wavefrontobjloader.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.media.opengl.GL2;
 
 /**
  *
- * @author FloH
+ * Stellt eine Flaeche dar mit Punkten (verticles), normalen (normals) und 
+ * Texturcoordinaten.
+ * @author Fruchuxs
  */
 public class Face {
     private List<Float[]> vertexCoordList;
