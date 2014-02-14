@@ -95,8 +95,10 @@ public class ModelLoader {
      */
     private ImportedModel createModel(Path pModelPath) {
         ModelData data = parseObjectFile(pModelPath);
-        List<FaceGroup> faces = new ArrayList<>();
+        List<FaceGroup> groupFaces = new ArrayList<>();
+        List<Face> faces = new ArrayList<>();
         FaceGroup fg = null;
+        Face tmpFace = null;
 
         for (int i = 0; i < data.getFacesCount(); i++) {
             // Generiere die Faces und packe sie zusammen mit einer Textur
@@ -105,20 +107,23 @@ public class ModelLoader {
             if (fg == null) {
                 fg = new FaceGroup(data.getMaterial(mtlName));
             }
-
-            fg.addFace(createFace(data, i));
+            
+            tmpFace = createFace(data, i);
+            fg.addFace(tmpFace);
 
             if (!fg.getFacesMaterial().getName().equals(mtlName)) {
-                faces.add(fg);
+                groupFaces.add(fg);
                 fg = null;
             }
+            
+            faces.add(tmpFace);
         }
 
         if (fg != null) {
-            faces.add(fg);
+            groupFaces.add(fg);
         }
 
-        return new ImportedModel(faces, data.getExtremPoints(), ++ModelLoader.modelCounter);
+        return new ImportedModel(groupFaces, faces, data.getExtremPoints(), ++ModelLoader.modelCounter);
     }
 
     private Face createFace(ModelData pData, Integer currentIndex) {
