@@ -17,14 +17,16 @@ import javax.media.opengl.GL2;
 public class ImportedModel {
     private Integer listIndex;
     private List<FaceGroup> facesGroup;
+    private List<Face> listOfAllFaces;
     private boolean listCreated;
     private Map<String, Float> extremPoints;
     
-    public ImportedModel(List<FaceGroup> pFacesGroup, Map<String, Float> pExtremPoints, Integer pListIndex) {
+    public ImportedModel(List<FaceGroup> pFacesGroup, List<Face> allFaces, Map<String, Float> pExtremPoints, Integer pListIndex) {
         facesGroup = pFacesGroup;
         listIndex = pListIndex;
         listCreated = false;
         extremPoints = pExtremPoints;
+        listOfAllFaces = allFaces;
     }
     
     public void draw(GL2 gl) {
@@ -58,5 +60,13 @@ public class ImportedModel {
      */
     public Float getExtremPoint(String pPoint) {
         return extremPoints.get(pPoint);
+    }
+
+    public List<Face> getFacesList() {
+        return listOfAllFaces;
+    }
+    
+    public Integer getName() {
+        return listIndex;
     }
 }

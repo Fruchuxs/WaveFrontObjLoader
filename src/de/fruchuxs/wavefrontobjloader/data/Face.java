@@ -7,9 +7,7 @@
 package de.fruchuxs.wavefrontobjloader.data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.media.opengl.GL2;
 
 /**
@@ -78,5 +76,29 @@ public class Face {
                 }
             }
         gl.glEnd();
+    }
+
+    public List<Float[]> getVertexCoordList() {
+        return vertexCoordList;
+    }
+
+    public void setVertexCoordList(List<Float[]> vertexCoordList) {
+        this.vertexCoordList = vertexCoordList;
+    }
+
+    public List<Float[]> getNormalCoordList() {
+        return normalCoordList;
+    }
+
+    public void setNormalCoordList(List<Float[]> normalCoordList) {
+        this.normalCoordList = normalCoordList;
+    }
+
+    public List<Float[]> getTextureCoordList() {
+        return textureCoordList;
+    }
+
+    public void setTextureCoordList(List<Float[]> textureCoordList) {
+        this.textureCoordList = textureCoordList;
     }
 }

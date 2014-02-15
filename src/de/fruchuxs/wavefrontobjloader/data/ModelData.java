@@ -99,7 +99,7 @@ public class ModelData {
     }
     
     public Float[] getNormalCoordsAt(Integer pPos) {
-        return vertexCoordList.get(pPos);
+        return normalCoordList.get(pPos);
     }
     
     public Float[] getTextureCoordsAt(Integer pPos) {
