@@ -6,9 +6,6 @@
 
 package de.fruchuxs.wavefrontobjloader.data;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import javax.media.opengl.GL2;
@@ -47,26 +44,26 @@ public class FaceGroup {
     }
     
     private void drawMaterial(GL2 gl) {
-        gl.glEnable(GL2.GL_COLOR_MATERIAL);
-        
+        /*gl.glEnable(GL2.GL_COLOR_MATERIAL);
+        gl.glEnable(GL2.GL_TEXTURE_2D);*/
         Float[] ks = facesMaterial.getKs();
         Float[] ka = facesMaterial.getKa();
         Float[] kd = facesMaterial.getKd();
         
         if(ks != null) {
-            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, getAsPrim(ks), 0);
+            gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_SPECULAR, getAsPrim(ks), 0);
             
             if(facesMaterial.getNs() != null) {
-                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SHININESS, new float[] { facesMaterial.getNs() }, 0);
+                gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_SHININESS, new float[] { facesMaterial.getNs() }, 0);
             }
         }
         
         if(ka != null) {
-            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT, getAsPrim(ka), 0);
+            gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_AMBIENT, getAsPrim(ka), 0);
         }
         
         if(kd != null) {
-            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_DIFFUSE, getAsPrim(kd), 0);
+            gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_DIFFUSE, getAsPrim(kd), 0);
         }
     }
     
