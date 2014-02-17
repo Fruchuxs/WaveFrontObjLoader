@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package de.fruchuxs.wavefrontobjloader.data;
 
 import java.util.ArrayList;
@@ -14,31 +8,56 @@ import javax.media.opengl.GL2;
  *
  * Stellt eine Flaeche dar mit Punkten (verticles), normalen (normals) und 
  * Texturcoordinaten.
- * @author Fruchuxs
  */
 public class Face {
     private List<Float[]> vertexCoordList;
     private List<Float[]> normalCoordList;
     private List<Float[]> textureCoordList;
     
+    /**
+     * Erstellt eine leere Fleache
+     */
     public Face() {
         vertexCoordList = new ArrayList<>();
         normalCoordList = new ArrayList<>();
         textureCoordList = new ArrayList<>();
     }
     
+    /**
+     * Fuegt ein Array mit Normalen Koordinaten hinzu (delegate Method fuer arraylist)
+     * 
+     * @param e Koordinaten die hinzugefuegt werden
+     * @return true wenn erfolgreich hinzugefuegt, andernfalls false
+     */
     public boolean addNormalCoords(Float[] e) {
         return normalCoordList.add(e);
     }
 
+    /**
+     * Fuegt ein Array mit Texture Koordinaten hinzu (delegate Method fuer arraylist)
+     * 
+     * @param e Koordinaten die hinzugefuegt werden
+     * @return true wenn erfolgreich hinzugefuegt, andernfalls false
+     */
     public boolean addTextureCoords(Float[] e) {
         return textureCoordList.add(e);
     }
     
+    /**
+     * Fuegt ein Array mit Vertex Koordinaten hinzu (delegate Method fuer arraylist)
+     * 
+     * @param e Koordinaten die hinzugefuegt werden
+     * @return true wenn erfolgreich hinzugefuegt, andernfalls false
+     */
     public boolean addVertexCoords(Float[] e) {
         return vertexCoordList.add(e);
     }
     
+    /**
+     * Zeichnet die Flaeche
+     * 
+     * @param gl Momentan OpenGL Kontext
+     */
     public void draw(GL2 gl) {
         int mode;
         Float[] normalCoords, texCoords, vertexCoords;
@@ -78,26 +97,56 @@ public class Face {
         gl.glEnd();
     }
 
+    /**
+     * Gibt die Vertex Koordinaten-Liste zurueck
+     * 
+     * @return Vertex Liste
+     */
     public List<Float[]> getVertexCoordList() {
         return vertexCoordList;
     }
 
+    /**
+     * Setzt eine Vertex Koordinatenliste
+     * 
+     * @param vertexCoordList Liste die gesetzt werden soll
+     */
     public void setVertexCoordList(List<Float[]> vertexCoordList) {
         this.vertexCoordList = vertexCoordList;
     }
-
+    
+    /**
+     * Gibt die Normalenliste zurueck
+     * 
+     * @return Liste der Normalen
+     */
     public List<Float[]> getNormalCoordList() {
         return normalCoordList;
     }
 
+    /**
+     * Setzt die normalen Koordinatenliste
+     * 
+     * @param normalCoordList Liste mit den Normalen 
+     */
     public void setNormalCoordList(List<Float[]> normalCoordList) {
         this.normalCoordList = normalCoordList;
     }
 
+    /**
+     * Gibt die Liste der Texture Koordinaten
+     * 
+     * @return Liste der Texture Koordinaten 
+     */
     public List<Float[]> getTextureCoordList() {
         return textureCoordList;
     }
 
+    /**
+     * Setzt die Liste mit den Texture Koordinaten
+     * 
+     * @param textureCoordList Setz die Liste mit den Texturekoordinaten
+     */
     public void setTextureCoordList(List<Float[]> textureCoordList) {
         this.textureCoordList = textureCoordList;
     }

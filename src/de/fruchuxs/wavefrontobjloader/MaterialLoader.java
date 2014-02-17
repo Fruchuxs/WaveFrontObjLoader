@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.fruchuxs.wavefrontobjloader;
 
-import de.fruchuxs.wavefrontobjloader.data.ModelData;
 import de.fruchuxs.wavefrontobjloader.data.Material;
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,13 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author FloH
+ * Laedt, parst und interpretiert eine Material Datei
  */
 public class MaterialLoader {
-
+    /**
+     * Instanz auf den Materialloader
+     */
     private static MaterialLoader instance = null;
-    private ModelData modelData;
 
     private MaterialLoader() {
 
@@ -41,6 +35,13 @@ public class MaterialLoader {
         return instance;
     }
 
+    /**
+     * Erzeugt Materialien auf Basis der angegebenen Material Datei
+     * 
+     * @param pMaterialPath Pfad zur Materialdatei
+     * @return Liste mit den erzeugten Material Objekten
+     * @throws FileNotFoundException Wenn Material Datei nicht gefunden
+     */
     public static List<Material> materialFactory(final Path pMaterialPath) throws FileNotFoundException {
         if (!pMaterialPath.toFile().exists()) {
             throw new FileNotFoundException(pMaterialPath.toString());
@@ -48,6 +49,12 @@ public class MaterialLoader {
         return getInstance().parseMtlFile(pMaterialPath);
     }
 
+    /**
+     * Erzeugt Materialien auf Basis der angegebenen Material Datei
+     * @param pMaterialPath
+     * @return Liste mit den erzeugten Material Objekten
+     * @throws FileNotFoundException Wenn Material Datei nicht gefunden
+     */
     public static List<Material> materialFactory(final String pMaterialPath) throws FileNotFoundException {
         return materialFactory(FileSystems.getDefault().getPath(pMaterialPath));
     }

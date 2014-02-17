@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package de.fruchuxs.wavefrontobjloader.data;
 
 import java.util.ArrayList;
@@ -12,21 +6,38 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author FloH
+ * Hier werden die geparsten Daten gesammelt
  */
 public class ModelData {
+    /**
+     * Liste mit den verticles
+     */
     private List<Float[]> vertexCoordList;
+    
+    /**
+     * Liste mit den Normalen
+     */
     private List<Float[]> normalCoordList;
+    
+    /**
+     * Liste mit den Texture Koordinaten
+     */
     private List<Float[]> textureCoordList;
-    
-    
+
     /**
      * Liste mit den Nummern der vertex/normal/textureCoord
      * Daten
      */
     private List<FaceData> facesList; 
+    
+    /**
+     * Materialliste
+     */
     private Map<String, Material> mtlList;
+    
+    /**
+     * Extrempunkte
+     */
     private Map<String, Float> extremPoints;
     
     public ModelData() {
